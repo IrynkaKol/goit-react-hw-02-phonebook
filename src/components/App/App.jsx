@@ -1,31 +1,41 @@
 import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
 import { Container } from './App.styled';
-import ContactForm from '../ContactForm/ContactForm'
+import ContactForm from '../ContactForm/ContactForm';
+import ContactList from '../ContactList/ContactList';
 
 export class App extends Component {
   state = {
     contacts: [],
-    
   };
 
   formSubmitHendler = data => {
-    console.log(data)
-  }
+    const contact = {
+      id: nanoid(),
+      name: data.name,
+      number: data.number,
+    };
+    console.log(data);
+    console.log(contact);
 
-  
+    this.setState(prevState => ({
+      contacts: [contact, ...prevState.contacts],
+    }));
+  };
 
+  deleteContacts = e => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== e),
+    }));
+  };
 
   render() {
     return (
       <Container>
         <h1>Phonebook</h1>
-        <ContactForm onSubmit={this.formSubmitHendler}/>
+        <ContactForm onSubmit={this.formSubmitHendler} />
         <h1>Contacts</h1>
-        <ul>
-          <li>Rosie Simpson</li>
-          <li>Hermiona Klein</li>
-          <li>Eden Klemens</li>
-        </ul>
+        <ContactList contacts={this.state.contacts} onDeleteContacts={this.deleteContacts} />
       </Container>
     );
   }
@@ -58,4 +68,4 @@ export class App extends Component {
             />
           </label>
           <button type="submit">Add contact</button>
-        </form>*/ 
+        </form>*/

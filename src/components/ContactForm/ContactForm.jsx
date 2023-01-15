@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 
+
+
 class ContactForm extends Component {
   state = {
     name: '',
     number: '',
   };
+addName = () => {
+    
+}
+
 
   hendleChange = e => {
     const { name, value } = e.currentTarget;
