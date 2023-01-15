@@ -7,7 +7,6 @@ class ContactForm extends Component {
   };
   hendleChange = e => {
     const { name, value } = e.currentTarget;
-
     this.setState({ [name]: value });
   };
 

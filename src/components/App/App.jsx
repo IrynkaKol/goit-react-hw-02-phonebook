@@ -17,7 +17,8 @@ export class App extends Component {
       name: data.name,
       number: data.number,
     };
-    console.log(data);
+
+        console.log(data);
     console.log(contact);
 
     this.setState(prevState => ({
@@ -34,6 +35,7 @@ export class App extends Component {
   changeFilter = (e) => {
 this.setState({filter: e.currentTarget.value})
   }
+
 getVisibleContacts = () => {
   const normalizedFilter = this.state.filter.toLowerCase();
   return this.state.contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter))
