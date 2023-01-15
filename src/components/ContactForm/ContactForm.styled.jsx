@@ -3,12 +3,14 @@ import styled from '@emotion/styled';
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 10px;
 `;
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
+  justify-content: center;
+align-items: center;
 `;
 export const Input = styled.input`
   width: 100%;
@@ -21,6 +23,7 @@ export const Input = styled.input`
   
   border-radius: 12px;
   &:hover, &:focus {
+    outline:none;
     background-color: #008CBA;
     color: white;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
