@@ -3,10 +3,12 @@ import { nanoid } from 'nanoid';
 import { Container } from './App.styled';
 import ContactForm from '../ContactForm/ContactForm';
 import ContactList from '../ContactList/ContactList';
+import Filter from '../Filter/Filter'
 
 export class App extends Component {
   state = {
     contacts: [],
+    filter: '',
   };
 
   formSubmitHendler = data => {
@@ -29,13 +31,24 @@ export class App extends Component {
     }));
   };
 
+  changeFilter = (e) => {
+this.setState({filter: e.currentTarget.value})
+  }
+getVisibleContacts = () => {
+  const normalizedFilter = this.state.filter.toLowerCase();
+  return this.state.contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter))
+}
+
   render() {
+    
+    const visibleContacts = this.getVisibleContacts();
     return (
       <Container>
         <h1>Phonebook</h1>
         <ContactForm onSubmit={this.formSubmitHendler} />
         <h1>Contacts</h1>
-        <ContactList contacts={this.state.contacts} onDeleteContacts={this.deleteContacts} />
+        <Filter value={this.state.filter} onChange={this.changeFilter}/>
+        <ContactList contacts={visibleContacts} onDeleteContacts={this.deleteContacts} />
       </Container>
     );
   }

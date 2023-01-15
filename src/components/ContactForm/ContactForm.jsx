@@ -1,27 +1,21 @@
 import React, { Component } from 'react';
 
-
-
 class ContactForm extends Component {
   state = {
     name: '',
     number: '',
   };
-addName = () => {
-    
-}
-
-
   hendleChange = e => {
     const { name, value } = e.currentTarget;
 
     this.setState({ [name]: value });
   };
+
   hendleSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.state); //data
 
-    this.reset()
+    this.reset();
   };
 
   reset = () => {
