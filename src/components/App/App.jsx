@@ -17,13 +17,20 @@ export class App extends Component {
       name: data.name,
       number: data.number,
     };
+if (!this.state.contacts.find(
+  ({name}) => name.toLowerCase() === data.name.toLowerCase()
+)
+) {
+  this.setState(prevState => ({
+    contacts: [contact, ...prevState.contacts],
+  }));
+} else {
+  alert (`${data.name} is already in contacts.`)
+}
+        //console.log(data);
+    //console.log(contact);
 
-        console.log(data);
-    console.log(contact);
-
-    this.setState(prevState => ({
-      contacts: [contact, ...prevState.contacts],
-    }));
+    
   };
 
   deleteContacts = e => {
