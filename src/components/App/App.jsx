@@ -50,6 +50,16 @@ export class App extends Component {
     );
   };
 
+  componentDidMount() {
+    console.log('App component DidMount')
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log('App component DidUpdate')
+    
+    console.log(prevState)
+    console.log(this.state)
+  }
+
   render() {
     const visibleContacts = this.getVisibleContacts();
     return (
